@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import useAuth from "./useAuth";
 import Player from "./Player";
 import TrackSearchResult from "./TrackSearchResult";
@@ -47,6 +47,7 @@ export default function Dashboard({ code }) {
     if (!search) return setSearchResults([]);
     if (!accessToken) return;
 
+    // variable of control. When user stop typing the search, fetch the data
     let cancel = false;
     spotifyApi.searchTracks(search).then((res) => {
       if (cancel) return;
